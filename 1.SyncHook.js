@@ -1,4 +1,4 @@
-const { SyncHook } = require('tapable');
+const { SyncHook } = require('./tapable');
 
 /**
  * Synchook 是一个构造函数或者说是一个类
