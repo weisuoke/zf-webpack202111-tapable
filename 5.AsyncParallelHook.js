@@ -1,4 +1,4 @@
-let { AsyncParallelHook } = require("tapable");
+let { AsyncParallelHook } = require("./tapable");
 let queue = new AsyncParallelHook(["name"]);
 console.time("cost");
 queue.tapAsync("1", function (name, callback) {

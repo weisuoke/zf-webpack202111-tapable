@@ -6,9 +6,13 @@ class Hook {
     this.taps = [];
     this._x = null; // [fn]
     this.call = CALL_DELEGATE;
+    this.callAsync = CALL_ASYNC_DELEGATE;
   }
   tap(options, fn) {
     this._tap('sync', options, fn);
+  }
+  tapAsync(options, fn) {
+    this._tap('async', options, fn);
   }
   _tap(type, options, fn) {
     if (typeof options === 'string') {
@@ -34,7 +38,13 @@ class Hook {
 
 const CALL_DELEGATE = function (...args) {
   this.call = this._createCall('sync');
+  // this 是 hook 实例，我用 this 调用 call 方法，call 里面的 this 肯定是指向 hook 实例的
   return this.call(...args)
+}
+
+const CALL_ASYNC_DELEGATE = function (...args) {
+  this.callAsync = this._createCall('async');
+  return this.callAsync(...args)
 }
 
 module.exports = Hook
