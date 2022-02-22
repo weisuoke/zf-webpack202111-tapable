@@ -3,8 +3,8 @@ const HookCodeFactory = require('./HookCodeFactory')
 
 class AsyncParallelHookCodeFactory extends HookCodeFactory {
   // 获取事件函数执行的代码需要动态的创建
-  content() {
-    return this.callTapsParallel()
+  content({ onDone }) {
+    return this.callTapsParallel({ onDone })
   }
 }
 
